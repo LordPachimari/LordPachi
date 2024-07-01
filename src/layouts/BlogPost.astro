@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import { ViewTransitions } from "astro:transitions";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+---
+
+<html lang="en">
+
+	<head>
+		<BaseHead title={title} description={description} />
+		
+		<ViewTransitions/>
+	</head>
+
+		<body class="bg-primary-3 text-primary-12">
+			<div class="fixed -z-10 left-0 right-0 h-[500px] opacity-60 bg-gradient-to-b from-primary-5 to-transparent " />
+		<main>
+			<article>
+				<div class="prose">
+						<div class="text-primary-11 text-center">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1 class="text-4xl font-bold py-4">{title}</h1>
+						<hr />
+					<slot />
+				</div>
+			</article>
+		</main>
+	</body>
+</html>
