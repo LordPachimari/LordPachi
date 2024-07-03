@@ -17,6 +17,7 @@ const interests = [
 	"Finance",
 	"MMA",
 ];
+const languages = ["English", "Russian", "Vietnamese"];
 ---
 
 <!doctype html>
@@ -95,6 +96,17 @@ const interests = [
 						interests.map((interest)=>(
 
 					<div class="text-sm bg-primary-7 hover:bg-primary-6 rounded-sm p-2 w-fit h-6 border-primary-8 border text-center flex justify-center items-center">{interest}</div>
+						))
+					}
+				</div>
+			</section>
+			<section class="pb-4">
+				<h3 class="text-base font-medium">Languages</h3>
+				<div class="flex gap-2 flex-wrap">
+					{
+						languages.map((language)=>(
+
+					<div class="text-sm bg-primary-7 hover:bg-primary-6 rounded-sm p-2 w-fit h-6 border-primary-8 border text-center flex justify-center items-center">{language}</div>
 						))
 					}
 				</div>
