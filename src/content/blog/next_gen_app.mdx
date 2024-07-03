@@ -1,0 +1,39 @@
+---
+title: 'Next-gen web app.'
+description: 'What makes a web app truly next-gen?'
+pubDate: 'Jul 03 2024'
+---
+When people hear the term “next-gen” or "modern" tech stack for building a web application, they often think of various JavaScript frameworks such as React, Svelte, Solid, and Vue. The older tech stack is typically associated with using jQuery and PHP. While all these frameworks provide their own ways of composing and rendering the UI on the client, the speed of your web application doesn't depend much on the framework you're using. All web apps have one thing in common: fetching data from the server. If you want to make your app truly high-performing and responsive, you need to focus on how to retrieve and mutate data from the server *really fast*.
+
+**Loading spinners**
+
+What causes loading spinners? It's all about the distance between your client and the server that serves the data. On the initial load, the client needs to fetch the data to render the UI. While the request is traveling to your server, the client may choose to display a loading spinner. Depending on where your server is located, the spinner may appear for a long or short time. However, for the server to actually retrieve the data, it usually makes another request to the database, so the distance between the server and database also contributes to the duration of your loading spinner.
+If you're located in Europe and your server is in the US with a database in Australia, your application will turn into more of a "spinner" app, resulting in poor user experience. This example of is a bit of an exaggeration but it illustrates the significance of distance between services and its effect on app performance.
+Technology like edge computing allows you to locate the server closer to your users, but it doesn't solve the problem of the distance between your database and the server.
+
+**So what if we get rid of the loading spinners?**
+
+Then the app will feel instant. How would we achieve that? Well, the source of loading spinners is the distance between your database, server, and the client, so we have to eliminate that distance. What if you store the data on the client instead? What if the data is right there for you, so you don't have to reach so far to your server to get it? That's where local storage comes in.
+
+Modern browsers allow us to store huge chunks of data. By integrating your app with the browser's local storage, everything will feel instantaneous. Every click, every mutation will modify or retrieve data that is located right on your computer. But... local storage only stores data locally. What if you want to use the app from another device? That's where the sync engine comes in. Its purpose is to synchronize the data on your local machine with the remote database.
+
+**Replicache**
+
+One of the sync engines that I've been using and like a lot is Replicache. When you make a change to your data on the client (insert, delete, update), you're making changes to the local storage. In the background, Replicache handles the sync and sends the same changes (mutations) to your server, which in turn applies them to the database. You can use any database you like, as long as it supports transactions.
+The good part about Replicache is that you can define custom mutations specifically for the server, as some business logic requires you to call external APIs, like handling payments or fetching shipping rates. The server is the source of truth; if something happens on the server, the mutations on the client get rolled back.
+There are many other local storage-related databases that put the client as the source of truth, but having the server as authoritative is more robust and secure. You should always follow the principle of never trusting the client.
+
+**Server is always there**
+
+In contrast to remote databases, the amount of data that can be stored in local storage is very limited. However, users will never need to see all the data that the client view provides. So our main task is to fetch the data that the user is most likely to request. This requires a lot of thought, which makes implementing a local-first app more complex. On the bright side, Rocicorp, the company behind Replicache, has introduced a new product called Zero, built on top of Replicache, which handles these complexities and makes developing local-first apps much easier.
+
+What if the app requires analyzing a large amount of data? An example might be searching through thousands of products on an e-commerce website. Well, then use the server. No one said you can't use a server in combination with client-side logic. E-commerce is one area that doesn't seem to require a local-first approach for the following reasons:
+
+- Calculating subtotals on the client is complex when you have intricate pricing rules defined on the backend. The solution is to mirror the backend logic on the client by creating a client version of the pricing service. This may introduce calculation mismatches if the mirroring is not done correctly.
+- Some data requires validation with a third party (shipping costs, tax rates, address validation).
+
+For all the above points, you can always use a server and build a hybrid local-server approach, which will dramatically improve user experience.
+
+I'm currently building an e-commerce platform that implements this hybrid approach, and I will post progress and findings in upcoming blogs.
+
+Overall, I believe that the only way a web app can get close to the performance of native apps (mobile) is to utilize the power of client-side JavaScript and local storage in combination with a server. Once a web app looks and feels exactly like a native app, one can finally say they have built a "next-gen" web app.

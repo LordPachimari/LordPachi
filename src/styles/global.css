@@ -121,6 +121,16 @@ pre {
 pre > code {
 	all: unset;
 }
+ul {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 40px ;
+	list-style-type: disc;
+  }
+  li{
+	padding-top: 10px;
+	padding-bottom: 10px;
+  }
 blockquote {
 	border-left: 4px solid var(--mauve-8);
 	padding: 0 0 0 20px;
