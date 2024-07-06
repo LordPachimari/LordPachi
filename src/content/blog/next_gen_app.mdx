@@ -15,7 +15,7 @@ Technology like edge computing allows you to locate the server closer to your us
 
 Then the app will feel instant. How would we achieve that? Well, the source of loading spinners is the distance between your database, server, and the client, so we have to eliminate that distance. What if you store the data on the client instead? What if the data is right there for you, so you don't have to reach so far to your server to get it? That's where local storage comes in.
 
-Modern browsers allow us to store huge chunks of data. By integrating your app with the browser's local storage, everything will feel instantaneous. Every click, every mutation will modify or retrieve data that is located right on your computer. But... local storage only stores data locally. What if you want to use the app from another device? That's where the sync engine comes in. Its purpose is to synchronize the data on your local machine with the remote database.
+Modern browsers allow us to store huge chunks of data. By integrating your app with the browser's local storage, everything will feel instantaneous. Every click, every mutation will modify or retrieve data that is located right on your computer. However, there is one drawback -- local storage only stores data locally. What if you want to use the app from another device? That's where the sync engine comes in. Its purpose is to synchronize the data on your local machine with the remote database.
 
 **Replicache**
 
@@ -27,7 +27,7 @@ There are many other local storage-related databases that put the client as the 
 
 In contrast to remote databases, the amount of data that can be stored in local storage is very limited. However, users will never need to see all the available data. So our main task is to fetch the data that the user is most likely to request. This requires a lot of thought, which makes implementing a local-first app more complex. On the bright side, Rocicorp, the company behind Replicache, has introduced a new product called Zero, built on top of Replicache, which handles these complexities and makes developing local-first apps much easier.
 
-What if the app requires analyzing a large amount of data? An example might be searching through thousands of products on an e-commerce website. Well, then use the server. No one said you can't use a server in combination with client-side logic. E-commerce is one area that doesn't seem to require a local-first approach for the following reasons:
+What if the app requires analyzing a large amount of data? An example might be searching through thousands of products on an e-commerce website. In this case, usuallyse the server. No one said you can't use a server in combination with client-side logic. E-commerce is one area that doesn't require full local-first approach for the following reasons:
 
 - Calculating subtotals on the client is complex when you have intricate pricing rules defined on the backend. The solution is to mirror the backend logic on the client by creating a client version of the pricing service. This may introduce calculation mismatches if the mirroring is not done correctly.
 - Some data requires validation with a third party (shipping costs, tax rates, address validation).
