@@ -25,7 +25,7 @@ There are many other local storage-related databases that put the client as the 
 
 **Server is always there**
 
-In contrast to remote databases, the amount of data that can be stored in local storage is very limited. However, users will never need to see all the data that the client view provides. So our main task is to fetch the data that the user is most likely to request. This requires a lot of thought, which makes implementing a local-first app more complex. On the bright side, Rocicorp, the company behind Replicache, has introduced a new product called Zero, built on top of Replicache, which handles these complexities and makes developing local-first apps much easier.
+In contrast to remote databases, the amount of data that can be stored in local storage is very limited. However, users will never need to see all the available data. So our main task is to fetch the data that the user is most likely to request. This requires a lot of thought, which makes implementing a local-first app more complex. On the bright side, Rocicorp, the company behind Replicache, has introduced a new product called Zero, built on top of Replicache, which handles these complexities and makes developing local-first apps much easier.
 
 What if the app requires analyzing a large amount of data? An example might be searching through thousands of products on an e-commerce website. Well, then use the server. No one said you can't use a server in combination with client-side logic. E-commerce is one area that doesn't seem to require a local-first approach for the following reasons:
 
